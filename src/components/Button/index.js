@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Button extends Component {
   handleClick = () => {
     const { buttonClick } = this.props;
-    buttonClick("abcdef");
+    buttonClick(); //Actual call of the passed function from props
   };
 
   render() {

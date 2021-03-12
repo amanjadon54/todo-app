@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class RadioButton extends Component{
-    render(){
-        return <div>
-            <input type='radio'>{this.props.radioButtonLabel}</input>
-        </div>
-    }
+class CheckBoxButton extends Component {
+  render() {
+    return (
+      <div>
+        <input type="checkbox">{this.props.checkBoxButtonLabel}</input>
+      </div>
+    );
+  }
 }
 
-export default RadioButton;
+export default CheckBoxButton;

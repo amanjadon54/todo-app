@@ -1,26 +1,35 @@
 import "./App.css";
 import Button from "./components/Button";
 import InputField from "./components/InputField";
-import RadioButton from "./components/RadioButton";
+import CheckBoxButton from "./components/CheckBoxButton";
 import React, { Component } from "react";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { showRadioButton: false };
+    this.state = { showAddTaskLabel: false };
   }
 
   addButtonClick = () => {
-    this.setState({ showRadioButton: true });
+    this.setState({ showAddTaskLabel: true });
+  };
+
+  taskLabelEnter = () => {
+    console.log("pressed label enter");
+    this.setState({ showAddTaskLabel: false });
   };
 
   render() {
-    const { showRadioButton } = this.state;
+    const { showAddTaskLabel } = this.state;
     return (
       <div>
-        <Button buttonClick={this.addButtonClick} buttonLabel="Add" />
-        <InputField />
-        {showRadioButton && <RadioButton />}
+        <Button
+          buttonClick={this.addButtonClick}
+          buttonLabel="+ Create a Task"
+        />
+        {showAddTaskLabel && (
+          <InputField inputLabelOnKey={this.taskLabelEnter} />
+        )}
       </div>
     );
   }
