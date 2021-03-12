@@ -4,8 +4,7 @@ class InputField extends Component {
   handleEnter = (event) => {
     if (event.keyCode == 13) {
       const { inputLabelOnKey } = this.props;
-      inputLabelOnKey();
-      alert("added successfully" + event.target.value);
+      inputLabelOnKey(event);
     }
   };
 
