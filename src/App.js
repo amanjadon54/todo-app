@@ -30,14 +30,10 @@ class App extends Component {
     this.setState({ showAddTaskLabel: false, toDoTaskList: updatedList });
   };
 
-  checkBoxToDoTaskChange = (event) => {
-    const { toDoTaskList, completedTaskList } = this.state;
+  moveElementBetweenList = (fromList, toList, event) => {
     const { checked, id } = event.target;
-    const updatedList = [...toDoTaskList];
-    const updatedCompletedList = [...completedTaskList];
-
     let foundIndex;
-    let strikeValue = updatedList.filter((element, index) => {
+    let strikeValue = fromList.filter((element, index) => {
       if (element.key == id) {
         foundIndex = index;
       }
@@ -48,39 +44,39 @@ class App extends Component {
       return false;
     }
 
-    if (checked) {
-      updatedList.splice(foundIndex, 1);
-      updatedCompletedList.push(strikeValue);
-    }
+    fromList.splice(foundIndex, 1);
+    toList.push(strikeValue);
+
+    return { fromList, toList };
+  };
+
+  checkBoxToDoTaskChange = (event) => {
+    const { toDoTaskList, completedTaskList } = this.state;
+    const updatedList = [...toDoTaskList];
+    const updatedCompletedList = [...completedTaskList];
+
+    const { fromList, toList } = this.moveElementBetweenList(
+      updatedList,
+      updatedCompletedList,
+      event
+    );
 
     this.setState({
-      toDoTaskList: updatedList,
-      completedTaskList: updatedCompletedList,
+      toDoTaskList: fromList,
+      completedTaskList: toList,
     });
   };
 
   checkBoxCompletedTaskChange = (event) => {
     const { toDoTaskList, completedTaskList } = this.state;
-    const { checked, id } = event.target;
     const updatedList = [...toDoTaskList];
     const updatedCompletedList = [...completedTaskList];
 
-    let foundIndex;
-    let strikeValue = updatedCompletedList.filter((element, index) => {
-      if (element.key == id) {
-        foundIndex = index;
-      }
-      return element.key === id;
-    })[0];
-
-    if (strikeValue === undefined) {
-      return false;
-    }
-
-    if (!checked) {
-      updatedCompletedList.splice(foundIndex, 1);
-      updatedList.push(strikeValue);
-    }
+    const { fromList, toList } = this.moveElementBetweenList(
+      updatedCompletedList,
+      updatedList,
+      event
+    );
 
     this.setState({
       toDoTaskList: updatedList,
