@@ -26,6 +26,21 @@ class App extends Component {
     this.setState({ showAddTaskLabel: false, taskList: updatedList });
   };
 
+  checkBoxChange = (event) => {
+    debugger;
+    const { taskList } = this.state;
+    const { checked, id } = event.target;
+    const updatedList = [...taskList];
+    let strikeValue = 1;
+    debugger;
+    strikeValue = updatedList.filter((element) => element.key === id);
+    if (checked) {
+      updatedList.delete(strikeValue);
+    }
+
+    this.setState({ taskList: updatedList });
+  };
+
   render() {
     const { showAddTaskLabel } = this.state;
     console.log(this.state);
@@ -41,8 +56,10 @@ class App extends Component {
 
         {this.state.taskList.map((task) => (
           <CheckBoxButton
+            key={task.key}
             taskCheckboxId={task.key}
             checkBoxButtonLabel={task.value}
+            checkBoxButtonChange={this.checkBoxChange}
           />
         ))}
       </div>
