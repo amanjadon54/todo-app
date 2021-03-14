@@ -16,6 +16,7 @@ class CheckBoxButton extends Component {
           name={this.props.checkBoxButtonLabel}
           value={this.props.checkBoxButtonLabel}
           onChange={this.handleOnChangeEvent}
+          checked={this.props.checkBoxChecked}
         />
         <span>{this.props.checkBoxButtonLabel}</span>
       </div>
