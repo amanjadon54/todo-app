@@ -18,7 +18,7 @@ class App extends Component {
     this.setState({ showAddTaskLabel: true });
   };
 
-  taskLabelEnter = (event) => {
+  addTaskEnter = (event) => {
     const { toDoTaskList } = this.state;
     const updatedList = [
       ...toDoTaskList,
@@ -30,15 +30,11 @@ class App extends Component {
     this.setState({ showAddTaskLabel: false, toDoTaskList: updatedList });
   };
 
-  checkBoxChange = (event) => {
-    debugger;
-
+  checkBoxToDoTaskChange = (event) => {
     const { toDoTaskList, completedTaskList } = this.state;
     const { checked, id } = event.target;
     const updatedList = [...toDoTaskList];
     const updatedCompletedList = [...completedTaskList];
-
-    debugger;
 
     let foundIndex;
     let strikeValue = updatedList.filter((element, index) => {
@@ -63,6 +59,35 @@ class App extends Component {
     });
   };
 
+  checkBoxCompletedTaskChange = (event) => {
+    const { toDoTaskList, completedTaskList } = this.state;
+    const { checked, id } = event.target;
+    const updatedList = [...toDoTaskList];
+    const updatedCompletedList = [...completedTaskList];
+
+    let foundIndex;
+    let strikeValue = updatedCompletedList.filter((element, index) => {
+      if (element.key == id) {
+        foundIndex = index;
+      }
+      return element.key === id;
+    })[0];
+
+    if (strikeValue === undefined) {
+      return false;
+    }
+
+    if (!checked) {
+      updatedCompletedList.splice(foundIndex, 1);
+      updatedList.push(strikeValue);
+    }
+
+    this.setState({
+      toDoTaskList: updatedList,
+      completedTaskList: updatedCompletedList,
+    });
+  };
+
   render() {
     const { showAddTaskLabel } = this.state;
     console.log(this.state);
@@ -72,26 +97,24 @@ class App extends Component {
           buttonClick={this.addButtonClick}
           buttonLabel="+ Create a Task"
         />
-        {showAddTaskLabel && (
-          <InputField inputLabelOnKey={this.taskLabelEnter} />
-        )}
-        <h1>To Do Items</h1>
+        {showAddTaskLabel && <InputField inputLabelOnKey={this.addTaskEnter} />}
+        <h3>To Do Items</h3>
         {this.state.toDoTaskList.map((task) => (
           <CheckBoxButton
             key={task.key}
             taskCheckboxId={task.key}
             checkBoxButtonLabel={task.value}
-            checkBoxButtonChange={this.checkBoxChange}
+            checkBoxButtonChange={this.checkBoxToDoTaskChange}
           />
         ))}
 
-        <h1>Completed Items</h1>
+        <h3>Completed Items</h3>
         {this.state.completedTaskList.map((completedTask) => (
           <CheckBoxButton
             key={completedTask.key}
             taskCheckboxId={completedTask.key}
             checkBoxButtonLabel={completedTask.value}
-            checkBoxButtonChange={this.checkBoxChange}
+            checkBoxButtonChange={this.checkBoxCompletedTaskChange}
             checkBoxChecked={true}
           />
         ))}
