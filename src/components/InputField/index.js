@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class InputField extends Component {
   handleEnter = (event) => {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       const { inputLabelOnKey } = this.props;
       inputLabelOnKey(event);
     }

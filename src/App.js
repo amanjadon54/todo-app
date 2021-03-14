@@ -34,7 +34,7 @@ class App extends Component {
     const { checked, id } = event.target;
     let foundIndex;
     let strikeValue = fromList.filter((element, index) => {
-      if (element.key == id) {
+      if (element.key === id) {
         foundIndex = index;
       }
       return element.key === id;
@@ -79,8 +79,8 @@ class App extends Component {
     );
 
     this.setState({
-      toDoTaskList: updatedList,
-      completedTaskList: updatedCompletedList,
+      toDoTaskList: toList,
+      completedTaskList: fromList,
     });
   };
 
