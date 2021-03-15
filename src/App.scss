@@ -31,7 +31,7 @@
     background: white;
     &::before {
       opacity: 1;
-      border-color: blue;
+      border-color: green;
     }
     ~ label::before {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -49,7 +49,7 @@
   &::before {
     position: absolute;
     content: attr(data-content);
-    color: lightgray;
+    color: yellowgreen;
     clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
     text-decoration: line-through;
     text-decoration-thickness: 2px;
