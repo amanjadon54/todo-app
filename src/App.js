@@ -3,6 +3,8 @@ import "./App.scss";
 import Button from "./components/Button";
 import InputField from "./components/InputField";
 import CheckBoxButton from "./components/CheckBoxButton";
+import DialogModal from "./components/DialogModal";
+
 import React, { Component } from "react";
 
 class App extends Component {
@@ -28,6 +30,7 @@ class App extends Component {
         value: event.target.value,
       },
     ];
+    DialogModal.close("my-custom-modal");
     this.setState({ showAddTaskLabel: false, toDoTaskList: updatedList });
   };
 
@@ -95,7 +98,12 @@ class App extends Component {
           buttonClick={this.addButtonClick}
           buttonLabel="+ Create a Task"
         />
-        {showAddTaskLabel && <InputField inputLabelOnKey={this.addTaskEnter} />}
+        {showAddTaskLabel && (
+          <DialogModal id="my-custom-modal">
+            <h1>Provide task detail</h1>
+            <InputField inputLabelOnKey={this.addTaskEnter} />
+          </DialogModal>
+        )}
         <h3>To Do Items</h3>
         {this.state.toDoTaskList.map((task) => (
           <CheckBoxButton
