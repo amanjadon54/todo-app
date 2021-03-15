@@ -1,4 +1,5 @@
 import "./App.css";
+import "./App.scss";
 import Button from "./components/Button";
 import InputField from "./components/InputField";
 import CheckBoxButton from "./components/CheckBoxButton";
@@ -90,6 +91,7 @@ class App extends Component {
     return (
       <div>
         <Button
+          buttonClassName="button"
           buttonClick={this.addButtonClick}
           buttonLabel="+ Create a Task"
         />
@@ -101,6 +103,8 @@ class App extends Component {
             taskCheckboxId={task.key}
             checkBoxButtonLabel={task.value}
             checkBoxButtonChange={this.checkBoxToDoTaskChange}
+            checkBoxClassName="checkbox"
+            checkBoxLabelClassName="label"
           />
         ))}
 
@@ -112,6 +116,8 @@ class App extends Component {
             checkBoxButtonLabel={completedTask.value}
             checkBoxButtonChange={this.checkBoxCompletedTaskChange}
             checkBoxChecked={true}
+            checkBoxClassName="checkbox"
+            checkBoxLabelClassName="label"
           />
         ))}
       </div>

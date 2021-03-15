@@ -12,13 +12,20 @@ class CheckBoxButton extends Component {
       <div key={this.props.taskCheckboxId}>
         <input
           type="checkbox"
+          className={this.props.checkBoxClassName}
           id={this.props.taskCheckboxId}
           name={this.props.checkBoxButtonLabel}
           value={this.props.checkBoxButtonLabel}
           onChange={this.handleOnChangeEvent}
           checked={this.props.checkBoxChecked}
         />
-        <span>{this.props.checkBoxButtonLabel}</span>
+
+        <label
+          className={this.props.checkBoxLabelClassName}
+          data-content={this.props.checkBoxButtonLabel}
+        >
+          {this.props.checkBoxButtonLabel}
+        </label>
       </div>
     );
   }
