@@ -19,11 +19,11 @@ class DialogModal extends Component {
   };
 
   static close = (id) => (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     // close modal specified by id
     let modal = DialogModal.modals.find((x) => x.props.id === id);
-    modal.setState({ isOpen: false });
+    // this.setState({ isOpen: false });
     // document.body.classList.remove("jw-modal-open");
   };
 
@@ -33,13 +33,13 @@ class DialogModal extends Component {
     this.state = { isOpen: true };
   }
 
-  //   componentDidMount() {
-  //     // move element to bottom of page (just before </body>) so it can be displayed above everything else
-  //     // document.body.appendChild(this.element);
+  // componentDidMount() {
+  //   // move element to bottom of page (just before </body>) so it can be displayed above everything else
+  //   // document.body.appendChild(this.element);
 
-  //     // add this modal instance to the modal service so it's accessible from other components
-  //     DialogModal.modals.push(this);
-  //   }
+  //   // add this modal instance to the modal service so it's accessible from other components
+  //   DialogModal.modals.push(this);
+  // }
 
   //   componentWillUnmount() {
   //     // remove this modal instance from modal service

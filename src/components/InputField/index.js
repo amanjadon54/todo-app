@@ -10,7 +10,13 @@ class InputField extends Component {
 
   render() {
     return (
-      <input value={this.props.InputFieldValue} onKeyDown={this.handleEnter} />
+      <input
+        className={this.props.inputLabelClassName}
+        maxLength={this.props.inputMaxLength}
+        size={this.props.inputSize}
+        value={this.props.InputFieldValue}
+        onKeyDown={this.handleEnter}
+      />
     );
   }
 }

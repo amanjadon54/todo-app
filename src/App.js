@@ -100,8 +100,18 @@ class App extends Component {
         />
         {showAddTaskLabel && (
           <DialogModal id="my-custom-modal">
-            <h1>Provide task detail</h1>
-            <InputField inputLabelOnKey={this.addTaskEnter} />
+            <h1>Provide task detail (Limit 50 characters)</h1>
+            <InputField
+              inputLabelClassName="addTextInput"
+              inputMaxLength="50"
+              inputSize="70"
+              inputLabelOnKey={this.addTaskEnter}
+            />
+            {/* <Button
+              buttonClassName="button"
+              buttonClick={DialogModal.close("my-custom-modal")}
+              buttonLabel="Close"
+            /> */}
           </DialogModal>
         )}
         <h3>To Do Items</h3>

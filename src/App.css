@@ -44,6 +44,13 @@
   color: #ffffff;
 }
 
+.addTextInput {
+  font-size: 20px;
+  color: black;
+  border-color: green;
+  background: white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
